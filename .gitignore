@@ -11,3 +11,9 @@ wheels/
 
 # Environment files
 .env
+
+# OS files
+.DS_Store
+
+# ADK session database
+*.db
