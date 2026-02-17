@@ -2,7 +2,7 @@
 
 ## Projektbeschreibung & Ziele
 
-Dieses Projekt implementiert eine KI-Agenten-Anwendung mit dem **Google Agent Development Kit (ADK)**, die speziell für Marketingzwecke entwickelt wurde. Ziel ist es, den gesamten Marketing-Workflow – von der Strategieentwicklung über das Copywriting bis hin zu fertigen Social-Media-Posts – mithilfe einer Pipeline aus spezialisierten KI-Agenten zu automatisieren.
+Dieses Projekt implementiert eine KI-Agenten-Anwendung mit dem **Google Agent Development Kit (ADK)**, die speziell für Marketingzwecke entwickelt wurde. Ziel ist es, den gesamten Marketing-Workflow, von der Strategieentwicklung über das Copywriting bis hin zu fertigen Social-Media-Posts, mithilfe einer Pipeline aus spezialisierten KI-Agenten zu automatisieren.
 
 Die Anwendung richtet sich an Marketer, Content Creator und Studierende, die schnell und effizient Marketingmaterial generieren möchten, ohne dabei auf strategische Qualität zu verzichten.
 
@@ -33,7 +33,7 @@ Die Anwendung richtet sich an Marketer, Content Creator und Studierende, die sch
 
 4. **Anwendung starten:**
    ```bash
-   python app.py
+   python3.12 app.py
    ```
    Die Gradio-Oberfläche öffnet sich unter `http://localhost:7860`.
 
@@ -79,11 +79,10 @@ Die **Gradio-Benutzeroberfläche** bietet folgende Features:
 
 ### Herausforderungen
 
-**Konsistenter Tonfall über mehrere Agenten:** Die größte Herausforderung war es, sicherzustellen, dass alle drei Agenten einen konsistenten Tonfall und eine einheitliche Markenstimme beibehalten. Da jeder Agent unabhängig generiert, konnte es vorkommen, dass die Strategie einen professionellen Ton vorgab, der Social-Media-Agent aber zu informell wurde. Die Lösung war, die Agenten-Instructions so zu gestalten, dass jeder Agent explizit auf die Ergebnisse des vorherigen Schritts referenziert.
+**Qualitätssicherung der Texte:** Eine besondere technische Herausforderung war die Qualitätssicherung der Texte. Dafür haben wir ein Custom Tool entwickelt, die Funktion analyze_marketing_tone. Sie prüft automatisch, ob der Werbetext einen Call-to-Action enthält, ob emotionale Power-Wörter verwendet werden und ob die Textlänge angemessen ist. Der Copywriter-Agent nutzt dieses Tool aktiv und optimiert seinen Text basierend auf dem Feedback.
 
-**Session-Management mit Google ADK:** Die Arbeit mit dem `InMemoryRunner` und dem Session-System war anfangs komplex. Insbesondere das korrekte Erstellen und Referenzieren von Sessions führte zu "Session not found"-Fehlern. Durch das Verständnis des Session-Lifecycles konnte dieses Problem gelöst werden.
+**Konsistenter Tonfall über mehrere Agenten:** Außerdem war es eine Herausforderung, sicherzustellen, dass alle drei Agenten einen konsistenten Tonfall und eine einheitliche Markenstimme beibehalten. Da jeder Agent unabhängig generiert, konnte es vorkommen, dass die Strategie einen professionellen Ton vorgab, der Social-Media-Agent aber zu informell wurde. Die Lösung war, die Agenten-Instructions so zu gestalten, dass jeder Agent explizit auf die Ergebnisse des vorherigen Schritts referenziert.
 
-**Tool-Integration:** Das Einbinden eigener Tools in den Agenten-Workflow erforderte ein gutes Verständnis davon, wie Google ADK Tool-Calling implementiert. Die Herausforderung bestand darin, das Tool so zu gestalten, dass es dem LLM tatsächlich nützliches Feedback gibt, auf dessen Basis es den Text verbessern kann.
 
 ### Lerneffekte
 
@@ -91,6 +90,6 @@ Die **Gradio-Benutzeroberfläche** bietet folgende Features:
 
 **Prompt Engineering:** Die Qualität der Agent-Instructions hat einen direkten Einfluss auf die Qualität der Ergebnisse. Detaillierte, strukturierte Prompts mit klaren Anweisungen liefern deutlich bessere Ergebnisse als vage Beschreibungen.
 
-**Tool-Calling als Erweiterung:** Durch die Integration des `analyze_marketing_tone`-Tools wurde klar, wie man LLM-Fähigkeiten durch externe Logik erweitern kann. Das Konzept von Tool-Calling – das LLM entscheidet selbst, wann es ein Tool aufruft – ist ein mächtiges Pattern für praxisnahe Anwendungen.
+**Tool-Calling als Erweiterung:** Durch die Integration des `analyze_marketing_tone`-Tools wurde klar, wie man LLM-Fähigkeiten durch externe Logik erweitern kann. Das Konzept von Tool-Calling: Das LLM entscheidet selbst, wann es ein Tool aufruft, ist ein mächtiges Pattern für praxisnahe Anwendungen.
 
-**Iterative Verfeinerung:** Die Implementierung der Verfeinerungs-Funktion hat verdeutlicht, wie wichtig es ist, Nutzern Kontrolle über KI-generierte Inhalte zu geben. Ein einmaliger Output reicht in der Praxis selten aus – iterative Anpassung ist der Schlüssel zu guten Ergebnissen.
+**Iterative Verfeinerung:** Die Implementierung der Verfeinerungs-Funktion hat verdeutlicht, wie wichtig es ist, Nutzern Kontrolle über KI-generierte Inhalte zu geben. Ein einmaliger Output reicht in der Praxis selten aus. Iterative Anpassung ist der Schlüssel zu guten Ergebnissen.
